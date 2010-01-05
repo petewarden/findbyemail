@@ -20,7 +20,7 @@
 					20,
 					341,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -60,6 +60,10 @@
 			PBXPerProjectTemplateStateSaveDate = 284411257;
 			PBXWorkspaceStateSaveDate = 284411257;
 		};
+		perUserProjectItems = {
+			5928F93C10F3C83A004C76C6 /* XCBuildMessageTextBookmark */ = 5928F93C10F3C83A004C76C6 /* XCBuildMessageTextBookmark */;
+			5928F93D10F3C83A004C76C6 /* PBXTextBookmark */ = 5928F93D10F3C83A004C76C6 /* PBXTextBookmark */;
+		};
 		sourceControlManager = 5928F90610F3C580004C76C6 /* Source Control */;
 		userBuildSettings = {
 		};
@@ -88,6 +92,8 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = isightviewer;
+		savedGlobals = {
+		};
 		showTypeColumn = 0;
 		sourceDirectories = (
 		);
@@ -105,6 +111,32 @@
 	5928F90710F3C580004C76C6 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	5928F90910F3C5B5004C76C6 /* isightviewer.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 3029}}";
+			sepNavSelRange = "{5115, 0}";
+			sepNavVisRange = "{4842, 376}";
+		};
+	};
+	5928F93C10F3C83A004C76C6 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Unused variable 'time'";
+		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 204;
+		rType = 1;
+	};
+	5928F93D10F3C83A004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
+		name = "isightviewer.cpp: 205";
+		rLen = 0;
+		rLoc = 5115;
+		rType = 0;
+		vrLen = 376;
+		vrLoc = 4842;
 	};
 	8DD76FA90486AB0100D96B5E /* isightviewer */ = {
 		activeExec = 0;

@@ -192,8 +192,8 @@ reshape(int w, int h)
 void
 display(void)
 {
-
-SGIdle(g_mungData->seqGrab);
+    // Pete - We need to call this periodically to give Quicktime a chance to grab the video data
+    SGIdle(g_mungData->seqGrab);
 
 	if (!g_isTextureSetup)
 	{
@@ -202,8 +202,6 @@ SGIdle(g_mungData->seqGrab);
 	}
   
 	glClear(GL_COLOR_BUFFER_BIT);
-  
-	const double time = getSeconds();
   
 	const double angle = 0;
 	g_texQuad.over = Vect(cos(angle), sin(angle), 0);

@@ -6,7 +6,7 @@
 #define EFFECT_UNSIGNED_INT_ARGB_8_8_8_8 GL_UNSIGNED_INT_8_8_8_8
 #endif
 
-#define BailErr(x) {err = x; if(err != noErr) fprintf(stderr,"Error '%d' :%s, %d\n",err,__FILE__,__LINE__);}
+#define BailErr(x) {err = x; if(err != noErr) fprintf(stderr,"Error '%d' :%s, %d\n",(int)(err),__FILE__,__LINE__);}
 
 MungDataPtr g_mungData = NULL;
 
@@ -74,7 +74,7 @@ OSErr InitializeMungData(Rect inBounds,MungDataRecord** mungDataPtr)
     *mungDataPtr = (MungDataPtr)NewPtrClear(sizeof(MungDataRecord));
     MungDataRecord* _mungData = *mungDataPtr;
 	
-	if (MemError() || NULL == _mungData ) return NULL;
+	if (MemError() || NULL == _mungData ) return -23;
     
     // create a GWorld
     err = QTNewGWorld(&(_mungData->pGWorld),	// returned GWorld
@@ -133,10 +133,6 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
     CGrafPtr	theSavedPort;
     GDHandle    theSavedDevice;
     CodecFlags	ignore;
-    float		fps = 0,
-       			averagefps = 0;
-    char		status[64];
-	Str255		theString; 
     
     ComponentResult err = noErr;
 
@@ -189,7 +185,7 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
                                           &scaleMatrix,			// transformation matrix
                                           srcCopy,				// transfer mode specifier
                                           (RgnHandle)NULL,		// clipping region in dest. coordinate system to use as a mask
-                                          NULL,					// flags
+                                          0,					// flags
                                           codecNormalQuality, 	// accuracy in decompression
                                           bestSpeedCodec);		// compressor identifier or special identifiers ie. bestSpeedCodec
             BailErr(err);
