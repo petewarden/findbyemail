@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5928F90C10F3C5B5004C76C6 /* isightviewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */; };
-		5928F90D10F3C5B5004C76C6 /* livefeed_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = 5928F90A10F3C5B5004C76C6 /* livefeed_osx.c */; };
+		5928F90D10F3C5B5004C76C6 /* livefeed_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928F90A10F3C5B5004C76C6 /* livefeed_osx.cpp */; };
 		5928F91210F3C604004C76C6 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91110F3C604004C76C6 /* GLUT.framework */; };
 		5928F91610F3C614004C76C6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91510F3C614004C76C6 /* OpenGL.framework */; };
 		5928F91A10F3C62A004C76C6 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91910F3C62A004C76C6 /* QuickTime.framework */; };
@@ -29,13 +29,15 @@
 
 /* Begin PBXFileReference section */
 		5928F90910F3C5B5004C76C6 /* isightviewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = isightviewer.cpp; sourceTree = "<group>"; };
-		5928F90A10F3C5B5004C76C6 /* livefeed_osx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = livefeed_osx.c; sourceTree = "<group>"; };
+		5928F90A10F3C5B5004C76C6 /* livefeed_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = livefeed_osx.cpp; sourceTree = "<group>"; };
 		5928F90B10F3C5B5004C76C6 /* livefeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livefeed.h; sourceTree = "<group>"; };
 		5928F91110F3C604004C76C6 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		5928F91510F3C614004C76C6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5928F91910F3C62A004C76C6 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		5928F91D10F3C632004C76C6 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		5928F97310F3D101004C76C6 /* vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vect.h; sourceTree = "<group>"; };
+		5928F98A10F3D57B004C76C6 /* bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
+		5928F98B10F3D9E1004C76C6 /* peteutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = peteutil.h; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* isightviewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = isightviewer; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,9 +73,11 @@
 			isa = PBXGroup;
 			children = (
 				5928F90910F3C5B5004C76C6 /* isightviewer.cpp */,
-				5928F90A10F3C5B5004C76C6 /* livefeed_osx.c */,
+				5928F90A10F3C5B5004C76C6 /* livefeed_osx.cpp */,
 				5928F90B10F3C5B5004C76C6 /* livefeed.h */,
 				5928F97310F3D101004C76C6 /* vect.h */,
+				5928F98A10F3D57B004C76C6 /* bitmap.h */,
+				5928F98B10F3D9E1004C76C6 /* peteutil.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -130,7 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5928F90C10F3C5B5004C76C6 /* isightviewer.cpp in Sources */,
-				5928F90D10F3C5B5004C76C6 /* livefeed_osx.c in Sources */,
+				5928F90D10F3C5B5004C76C6 /* livefeed_osx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

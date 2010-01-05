@@ -1,14 +1,12 @@
 #include "livefeed.h"
 
-#if __BIG_ENDIAN__
-#define EFFECT_UNSIGNED_INT_ARGB_8_8_8_8 GL_UNSIGNED_INT_8_8_8_8_REV
-#else
-#define EFFECT_UNSIGNED_INT_ARGB_8_8_8_8 GL_UNSIGNED_INT_8_8_8_8
-#endif
+#define FEED_WIDTH (640)
+#define FEED_HEIGHT (480)
 
 #define BailErr(x) {err = x; if(err != noErr) fprintf(stderr,"Error '%d' :%s, %d\n",(int)(err),__FILE__,__LINE__);}
 
 MungDataPtr g_mungData = NULL;
+Bitmap4b g_feedImage(FEED_WIDTH, FEED_HEIGHT);
 
 void lf_init()
 {
@@ -211,10 +209,12 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
 //			const int videoDataSize = _mungData->drawSize;
 //			fprintf(stderr,"0x%x:%dk\n",videoData,videoDataSize);
 
-			glBindTexture(GL_TEXTURE_RECTANGLE_EXT, _mungData->textureID);
-			glTexSubImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, 0, 0, 
-				(_mungData->rowBytes/4), _mungData->boundsRect.bottom, 
-				GL_BGRA_EXT, EFFECT_UNSIGNED_INT_ARGB_8_8_8_8, videoData);
+            g_feedImage.replaceWithData((unsigned char*)(videoData), FEED_WIDTH, FEED_HEIGHT, _mungData->rowBytes);
+
+//            glBindTexture(GL_TEXTURE_RECTANGLE_EXT, _mungData->textureID);
+//            glTexSubImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, 0, 0, 
+//                (_mungData->rowBytes/4), _mungData->boundsRect.bottom, 
+//                GL_BGRA_EXT, EFFECT_UNSIGNED_INT_ARGB_8_8_8_8, videoData);
 
 		}
 	}

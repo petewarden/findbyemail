@@ -7,6 +7,14 @@
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
 
+#if __BIG_ENDIAN__
+#define EFFECT_UNSIGNED_INT_ARGB_8_8_8_8 GL_UNSIGNED_INT_8_8_8_8_REV
+#else
+#define EFFECT_UNSIGNED_INT_ARGB_8_8_8_8 GL_UNSIGNED_INT_8_8_8_8
+#endif
+
+#include "bitmap.h"
+
 typedef struct {
     Rect 				boundsRect;	// bounds rect
     GWorldPtr 		 	pGWorld;	// offscreen
@@ -23,9 +31,7 @@ typedef struct {
 
 extern MungDataPtr g_mungData;
 
-#ifdef __cplusplus
-extern "C" {
-#endif // __cplusplus
+extern Bitmap4b g_feedImage;
 
 void lf_init();
 
@@ -33,12 +39,5 @@ OSErr InitializeMungData(Rect inBounds,MungDataRecord** mungDataPtr);
 void MakeSequenceGrabber(MungDataRecord* _mungData);
 OSErr MakeSequenceGrabChannel(SeqGrabComponent seqGrab, SGChannel *sgchanVideo, Rect const *rect);
 pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long chRefCon, TimeValue time, short writeType, long refCon);
-
-#ifdef __cplusplus
-};
-#endif // __cplusplus
-
-#define FEED_WIDTH (640)
-#define FEED_HEIGHT (480)
 
 #endif // INCLUDE_LIVEFEED_H

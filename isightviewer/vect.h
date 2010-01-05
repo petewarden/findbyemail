@@ -1,6 +1,5 @@
 #ifndef INCLUDE_VECT_H
 #define INCLUDE_VECT_H
-
 /*
  *  vect.h
  *  isightviewer
@@ -35,10 +34,6 @@ template <class T> struct Vect2
 template <class T> inline Vect2<T> operator*(T factor, const Vect2<T>& other) { 
 	return Vect2<T>(factor*other.x, factor*other.y); }
 
-typedef struct Vect2<float> Vect2f;
-typedef struct Vect2<double> Vect2d;
-
-
 template <class T> struct Vect3
 {
 	T x;
@@ -66,7 +61,41 @@ template <class T> struct Vect3
 template <class T> inline Vect3<T> operator*(T factor, const Vect3<T>& other) { 
 	return Vect3<T>(factor*other.x, factor*other.y, factor*other.z); }
 
+template <class T> struct Vect4
+{
+	T x;
+	T y;
+	T z;
+	T w;
+
+	Vect4() : x(0), y(0), z(0), w(0) { }
+	Vect4(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) { }
+	Vect4(const Vect4<T>& other) : x(other.x), y(other.y), z(other.z), w(other.w) { }
+
+	const Vect4<T>& operator*=(T factor) { x*=factor; y*=factor; z*=factor; w*=factor; return *this; }
+	const Vect4<T>& operator+=(const Vect4<T>& other) { x+=other.x; y+=other.y; z+=other.z; w+=other.w; return *this; }
+	const Vect4<T>& operator-=(const Vect4<T>& other) { x-=other.x; y-=other.y; z-=other.z; w-=other.w; return *this; }
+
+	Vect4<T> operator*(T factor) { return Vect4<T>(x*factor, y*factor, z*factor, w*factor); }
+	Vect4<T> operator+(const Vect4<T>& other) { return Vect4<T>(x+other.x, y+other.y, z+other.z, w+other.w); }
+	Vect4<T> operator-(const Vect4<T>& other) { return Vect4<T>(x-other.x, y-other.y, z-other.z, w-other.w); }
+			
+	T dot(const Vect4<T>& other) { return (x*other.x)+(y*other.y)+(z*other.z)+(w*other.w); }
+};
+
+template <class T> inline Vect4<T> operator*(T factor, const Vect4<T>& other) { 
+	return Vect4<T>(factor*other.x, factor*other.y, factor*other.z, factor*other.w); }
+
+typedef struct Vect2<unsigned char> Vect2b;
+typedef struct Vect2<float> Vect2f;
+typedef struct Vect2<double> Vect2d;
+
+typedef struct Vect3<unsigned char> Vect3b;
 typedef struct Vect3<float> Vect3f;
 typedef struct Vect3<double> Vect3d;
 
+typedef struct Vect4<unsigned char> Vect4b;
+typedef struct Vect4<float> Vect4f;
+typedef struct Vect4<double> Vect4d;
+    
 #endif // INCLUDE_VECT_H

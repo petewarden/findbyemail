@@ -1,3 +1,4 @@
+#include "vect.h"
 
 #include <stdlib.h>
 #include <sys/time.h>
@@ -13,7 +14,7 @@
 #endif // __APPLE__
 
 #include "livefeed.h"
-#include "vect.h"
+#include "bitmap.h"
 
 #define WINDOW_WIDTH (1024)
 #define WINDOW_HEIGHT (768)
@@ -31,7 +32,7 @@ class BasicTexQuad
 public:
 	BasicTexQuad (Vect3d _pos, Vect3d _over, Vect3d _norm, double _width, double _height);	
 
-	void SetupTexture ();
+	void SetTexture(Bitmap4b& bitmap);
 	void DrawSelf ();
 	
 public:
@@ -85,44 +86,24 @@ BasicTexQuad::BasicTexQuad (Vect3d _pos, Vect3d _over, Vect3d _norm,
   pxh = 100;
 }
 
-void BasicTexQuad::SetupTexture ()
-{ 
-	bytes = (char *)malloc (pxw * pxh * 4);
+void BasicTexQuad::SetTexture(Bitmap4b& bitmap)
+{
+    width = bitmap._width;
+    height = bitmap._height;
+
+    if (texID!=0)
+        glDeleteTextures(1, &texID);
+        
 	glGenTextures (1, &texID);
 
-	char* currentPixel = bytes;
-	for (int y=0; y<pxh; y++)
-	{
-		for (int x=0; x<pxw; x++)
-		{
-			if (x&0x7)
-			{
-				currentPixel[0] = 0; 
-				currentPixel[1] = 0; 
-				currentPixel[2] = 0; 
-				currentPixel[3] = 255;
-			}
-			else
-			{
-				currentPixel[0] = 255; 
-				currentPixel[1] = 255; 
-				currentPixel[2] = 255; 
-				currentPixel[3] = 255;			
-			}
-			
-			currentPixel +=4;
-		}
-	}
-
-	glBindTexture (GL_TEXTURE_2D, texID);
-	glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA8, pxw, pxh, 0, 
-			GL_RGBA, GL_UNSIGNED_BYTE, bytes);
-			
+	glBindTexture (GL_TEXTURE_RECTANGLE_EXT, texID);
+    glTexImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, GL_RGBA8, (bitmap._rowBytes/4), height,
+        0, GL_BGRA_EXT, EFFECT_UNSIGNED_INT_ARGB_8_8_8_8, bitmap._pixelData);
 }
 
 void BasicTexQuad::DrawSelf ()
 { 
-  glBindTexture(GL_TEXTURE_RECTANGLE_EXT, g_mungData->textureID);
+  glBindTexture(GL_TEXTURE_RECTANGLE_EXT, texID);
   glEnable(GL_TEXTURE_RECTANGLE_EXT);
 
   Vect3d up = over.Cross (norm);
@@ -130,8 +111,8 @@ void BasicTexQuad::DrawSelf ()
   Vect3d east = width * over;
   Vect3d v = pos - 0.5 * (east + north);
   float left = 0.0;
-  float right = FEED_WIDTH;;
-  float bottom = FEED_HEIGHT;
+  float right = width;
+  float bottom = height;
   float top = 0;
 
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -150,8 +131,8 @@ BasicTexQuad g_texQuad(
     Vect3d((WINDOW_WIDTH/2), (WINDOW_HEIGHT/2),0), 
     Vect3d(0,1,0), 
     Vect3d(0,0,1), 
-    FEED_WIDTH, 
-    FEED_HEIGHT);
+    1, 
+    1);
 bool g_isTextureSetup = false;
 
 void
@@ -171,11 +152,7 @@ display(void)
     // Pete - We need to call this periodically to give Quicktime a chance to grab the video data
     SGIdle(g_mungData->seqGrab);
 
-	if (!g_isTextureSetup)
-	{
-		g_texQuad.SetupTexture();
-		g_isTextureSetup = true;
-	}
+    g_texQuad.SetTexture(g_feedImage);
   
 	glClear(GL_COLOR_BUFFER_BIT);
   
