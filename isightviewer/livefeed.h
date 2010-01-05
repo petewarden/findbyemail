@@ -38,7 +38,7 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
 };
 #endif // __cplusplus
 
-#define FEED_WIDTH (320)
-#define FEED_HEIGHT (240)
+#define FEED_WIDTH (640)
+#define FEED_HEIGHT (480)
 
 #endif // INCLUDE_LIVEFEED_H

@@ -14,6 +14,9 @@
 
 #include "livefeed.h"
 
+#define WINDOW_WIDTH (1024)
+#define WINDOW_HEIGHT (768)
+
 struct Vect
 {
 	double x;
@@ -145,23 +148,17 @@ void BasicTexQuad::SetupTexture ()
 
 void BasicTexQuad::DrawSelf ()
 { 
-//  glEnable (GL_TEXTURE_2D);
-//  if (!texID)
-//    SetupTexture ();
-//  else
-//    glBindTexture (GL_TEXTURE_2D, texID);
-
-glBindTexture(GL_TEXTURE_RECTANGLE_EXT, g_mungData->textureID);
-glEnable(GL_TEXTURE_RECTANGLE_EXT);
+  glBindTexture(GL_TEXTURE_RECTANGLE_EXT, g_mungData->textureID);
+  glEnable(GL_TEXTURE_RECTANGLE_EXT);
 
   Vect up = over.Cross (norm);
   Vect north = height * up;
   Vect east = width * over;
   Vect v = pos - 0.5 * (east + north);
   float left = 0.0;
-  float right = FEED_HEIGHT;//1.0;
-  float bottom = 0.0;
-  float top = FEED_HEIGHT;//1.0;
+  float right = FEED_WIDTH;;
+  float bottom = FEED_HEIGHT;
+  float top = 0;
 
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -175,7 +172,12 @@ glEnable(GL_TEXTURE_RECTANGLE_EXT);
   glEnd();
 }
 
-BasicTexQuad g_texQuad(Vect(100,100,0), Vect(0,1,0), Vect(0,0,1), 100, 100);
+BasicTexQuad g_texQuad(
+    Vect((WINDOW_WIDTH/2), (WINDOW_HEIGHT/2),0), 
+    Vect(0,1,0), 
+    Vect(0,0,1), 
+    FEED_WIDTH, 
+    FEED_HEIGHT);
 bool g_isTextureSetup = false;
 
 void
@@ -219,6 +221,7 @@ main(int argc, char **argv)
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
   glutCreateWindow("Video capture example");
+  glutReshapeWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
   

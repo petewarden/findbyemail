@@ -126,8 +126,6 @@ bail:
 
 pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long chRefCon, TimeValue time, short writeType, long refCon)
 {
-    fprintf(stderr,"data callback\n");
-    
 	MungDataRecord* _mungData = (MungDataRecord*)(refCon);
 
     CGrafPtr	theSavedPort;
@@ -212,8 +210,6 @@ pascal OSErr MungGrabDataProc(SGChannel c, Ptr p, long len, long *offset, long c
 			char* videoData = GetPixBaseAddr(GetGWorldPixMap(_mungData->pGWorld));
 //			const int videoDataSize = _mungData->drawSize;
 //			fprintf(stderr,"0x%x:%dk\n",videoData,videoDataSize);
-
-            fprintf(stderr,"Found data");
 
 			glBindTexture(GL_TEXTURE_RECTANGLE_EXT, _mungData->textureID);
 			glTexSubImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, 0, 0, 
