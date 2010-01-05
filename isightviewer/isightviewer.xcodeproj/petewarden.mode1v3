@@ -271,7 +271,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -296,7 +296,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>350 312 1395 866 0 0 1920 1178 </string>
+						<string>228 276 1395 866 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -314,7 +314,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>isightviewer.cpp</string>
+								<string>vect.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -322,16 +322,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>isightviewer.cpp</string>
+										<string>vect.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5928F97110F3CB26004C76C6</string>
+										<string>5928F98810F3D3F0004C76C6</string>
 										<key>history</key>
 										<array>
 											<string>5928F95110F3CA20004C76C6</string>
 											<string>5928F96110F3CABF004C76C6</string>
-											<string>5928F96210F3CABF004C76C6</string>
+											<string>5928F98610F3D3F0004C76C6</string>
+											<string>5928F98710F3D3F0004C76C6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -345,7 +346,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1187, 639}}</string>
 								<key>RubberWindowFrame</key>
-								<string>350 312 1395 866 0 0 1920 1178 </string>
+								<string>228 276 1395 866 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -365,7 +366,7 @@
 								<key>Frame</key>
 								<string>{{0, 644}, {1187, 181}}</string>
 								<key>RubberWindowFrame</key>
-								<string>350 312 1395 866 0 0 1920 1178 </string>
+								<string>228 276 1395 866 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -529,7 +530,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5928F97210F3CB26004C76C6</string>
+		<string>5928F98910F3D3F0004C76C6</string>
 		<string>5928F93010F3C649004C76C6</string>
 		<string>5928F93110F3C649004C76C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -538,7 +539,7 @@
 		<string>/Users/petewarden/Projects/moveable/isightviewer/isightviewer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>350 312 1395 866 0 0 1920 1178 </string>
+	<string>228 276 1395 866 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

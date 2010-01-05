@@ -13,36 +13,10 @@
 #endif // __APPLE__
 
 #include "livefeed.h"
+#include "vect.h"
 
 #define WINDOW_WIDTH (1024)
 #define WINDOW_HEIGHT (768)
-
-struct Vect
-{
-	double x;
-	double y;
-	double z;
-
-	Vect() : x(0.0), y(0.0), z(0.0) { }
-	Vect(double _x, double _y, double _z) : x(_x), y(_y), z(_z) { }
-	Vect(const Vect& other) : x(other.x), y(other.y), z(other.z) { }
-
-	const Vect& operator*=(double factor) { x*=factor; y*=factor; z*=factor; return *this; }
-	const Vect& operator+=(const Vect& other) { x+=other.x; y+=other.y; z+=other.z; return *this; }
-	const Vect& operator-=(const Vect& other) { x-=other.x; y-=other.y; z-=other.z; return *this; }
-
-	Vect operator*(double factor) { return Vect(x*factor, y*factor, z*factor); }
-	Vect operator+(const Vect& other) { return Vect(x+other.x, y+other.y, z+other.z); }
-	Vect operator-(const Vect& other) { return Vect(x-other.x, y-other.y, z-other.z); }
-	
-	Vect Cross(const Vect& other) { return Vect((y*other.z)-(z*other.y), 
-		(z*other.x)-(x*other.z), (x*other.y)-(y*other.x)); }
-		
-	double dot(const Vect& other) { return (x*other.x)+(y*other.y)+(z*other.z); }
-};
-
-inline Vect operator*(double factor, const Vect& other) { 
-	return Vect(factor*other.x, factor*other.y, factor*other.z); }
 
 double getSeconds()
 {
@@ -55,15 +29,15 @@ double getSeconds()
 class BasicTexQuad
 {
 public:
-	BasicTexQuad (Vect _pos, Vect _over, Vect _norm, double _width, double _height);	
+	BasicTexQuad (Vect3d _pos, Vect3d _over, Vect3d _norm, double _width, double _height);	
 
 	void SetupTexture ();
 	void DrawSelf ();
 	
 public:
-	Vect pos;
-	Vect over;
-	Vect norm;
+	Vect3d pos;
+	Vect3d over;
+	Vect3d norm;
 	double width;
 	double height;
 
@@ -97,7 +71,7 @@ do {                                                            \
 	exit(0);                                                    \
 } while (false)
 
-BasicTexQuad::BasicTexQuad (Vect _pos, Vect _over, Vect _norm,
+BasicTexQuad::BasicTexQuad (Vect3d _pos, Vect3d _over, Vect3d _norm,
                             double _width, double _height)
 { pos = _pos;
   over = _over;
@@ -151,10 +125,10 @@ void BasicTexQuad::DrawSelf ()
   glBindTexture(GL_TEXTURE_RECTANGLE_EXT, g_mungData->textureID);
   glEnable(GL_TEXTURE_RECTANGLE_EXT);
 
-  Vect up = over.Cross (norm);
-  Vect north = height * up;
-  Vect east = width * over;
-  Vect v = pos - 0.5 * (east + north);
+  Vect3d up = over.Cross (norm);
+  Vect3d north = height * up;
+  Vect3d east = width * over;
+  Vect3d v = pos - 0.5 * (east + north);
   float left = 0.0;
   float right = FEED_WIDTH;;
   float bottom = FEED_HEIGHT;
@@ -173,9 +147,9 @@ void BasicTexQuad::DrawSelf ()
 }
 
 BasicTexQuad g_texQuad(
-    Vect((WINDOW_WIDTH/2), (WINDOW_HEIGHT/2),0), 
-    Vect(0,1,0), 
-    Vect(0,0,1), 
+    Vect3d((WINDOW_WIDTH/2), (WINDOW_HEIGHT/2),0), 
+    Vect3d(0,1,0), 
+    Vect3d(0,0,1), 
     FEED_WIDTH, 
     FEED_HEIGHT);
 bool g_isTextureSetup = false;
@@ -206,7 +180,7 @@ display(void)
 	glClear(GL_COLOR_BUFFER_BIT);
   
 	const double angle = 0;
-	g_texQuad.over = Vect(cos(angle), sin(angle), 0);
+	g_texQuad.over = Vect3d(cos(angle), sin(angle), 0);
 
 	g_texQuad.DrawSelf();
   

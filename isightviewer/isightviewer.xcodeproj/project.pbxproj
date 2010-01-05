@@ -35,6 +35,7 @@
 		5928F91510F3C614004C76C6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5928F91910F3C62A004C76C6 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		5928F91D10F3C632004C76C6 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		5928F97310F3D101004C76C6 /* vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vect.h; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* isightviewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = isightviewer; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,6 +73,7 @@
 				5928F90910F3C5B5004C76C6 /* isightviewer.cpp */,
 				5928F90A10F3C5B5004C76C6 /* livefeed_osx.c */,
 				5928F90B10F3C5B5004C76C6 /* livefeed.h */,
+				5928F97310F3D101004C76C6 /* vect.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";

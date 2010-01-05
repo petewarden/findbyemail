@@ -6,7 +6,6 @@
 		activeExecutable = 5928F8FD10F3C579004C76C6 /* isightviewer */;
 		activeTarget = 8DD76FA90486AB0100D96B5E /* isightviewer */;
 		addToTargets = (
-			8DD76FA90486AB0100D96B5E /* isightviewer */,
 		);
 		codeSenseManager = 5928F90710F3C580004C76C6 /* Code sense */;
 		executables = (
@@ -78,6 +77,12 @@
 			5928F96910F3CACB004C76C6 /* PBXTextBookmark */ = 5928F96910F3CACB004C76C6 /* PBXTextBookmark */;
 			5928F96D10F3CB0C004C76C6 /* PBXTextBookmark */ = 5928F96D10F3CB0C004C76C6 /* PBXTextBookmark */;
 			5928F97110F3CB26004C76C6 /* PBXTextBookmark */ = 5928F97110F3CB26004C76C6 /* PBXTextBookmark */;
+			5928F97C10F3D2F2004C76C6 /* PBXTextBookmark */ = 5928F97C10F3D2F2004C76C6 /* PBXTextBookmark */;
+			5928F97D10F3D2F2004C76C6 /* PBXTextBookmark */ = 5928F97D10F3D2F2004C76C6 /* PBXTextBookmark */;
+			5928F97E10F3D2F2004C76C6 /* PBXTextBookmark */ = 5928F97E10F3D2F2004C76C6 /* PBXTextBookmark */;
+			5928F98610F3D3F0004C76C6 /* PBXTextBookmark */ = 5928F98610F3D3F0004C76C6 /* PBXTextBookmark */;
+			5928F98710F3D3F0004C76C6 /* PBXTextBookmark */ = 5928F98710F3D3F0004C76C6 /* PBXTextBookmark */;
+			5928F98810F3D3F0004C76C6 /* PBXTextBookmark */ = 5928F98810F3D3F0004C76C6 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 5928F90610F3C580004C76C6 /* Source Control */;
 		userBuildSettings = {
@@ -129,9 +134,9 @@
 	};
 	5928F90910F3C5B5004C76C6 /* isightviewer.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1126, 3003}}";
-			sepNavSelRange = "{4538, 0}";
-			sepNavVisRange = "{3819, 1224}";
+			sepNavIntBoundsRect = "{{0, 0}, {1126, 2834}}";
+			sepNavSelRange = "{279, 0}";
+			sepNavVisRange = "{80, 744}";
 		};
 	};
 	5928F90A10F3C5B5004C76C6 /* livefeed_osx.c */ = {
@@ -154,7 +159,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 206;
+		rLoc = 180;
 		rType = 1;
 	};
 	5928F93D10F3C83A004C76C6 /* PBXTextBookmark */ = {
@@ -162,7 +167,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 205";
 		rLen = 0;
-		rLoc = 5107;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 376;
 		vrLoc = 4842;
@@ -172,7 +177,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 222";
 		rLen = 0;
-		rLoc = 5469;
+		rLoc = 4433;
 		rType = 0;
 		vrLen = 901;
 		vrLoc = 4685;
@@ -182,7 +187,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 18";
 		rLen = 0;
-		rLoc = 324;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 4768;
@@ -192,7 +197,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 128";
 		rLen = 0;
-		rLoc = 3252;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 2930;
@@ -232,7 +237,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 128";
 		rLen = 0;
-		rLoc = 3252;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 2930;
@@ -242,7 +247,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 180";
 		rLen = 0;
-		rLoc = 4602;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 3763;
@@ -252,7 +257,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 208";
 		rLen = 0;
-		rLoc = 5132;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 3858;
@@ -272,7 +277,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 208";
 		rLen = 0;
-		rLoc = 5132;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 3878;
@@ -282,7 +287,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 161";
 		rLen = 0;
-		rLoc = 3952;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 3356;
@@ -292,7 +297,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 208";
 		rLen = 0;
-		rLoc = 5133;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 4730;
@@ -302,7 +307,7 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 176";
 		rLen = 0;
-		rLoc = 4539;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 3819;
@@ -312,10 +317,77 @@
 		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
 		name = "isightviewer.cpp: 176";
 		rLen = 0;
-		rLoc = 4538;
+		rLoc = 278;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 3819;
+	};
+	5928F97310F3D101004C76C6 /* vect.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1126, 949}}";
+			sepNavSelRange = "{937, 0}";
+			sepNavVisRange = "{353, 1875}";
+		};
+	};
+	5928F97C10F3D2F2004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F97310F3D101004C76C6 /* vect.h */;
+		name = "vect.h: 40";
+		rLen = 0;
+		rLoc = 2416;
+		rType = 0;
+		vrLen = 1438;
+		vrLoc = 0;
+	};
+	5928F97D10F3D2F2004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
+		name = "isightviewer.cpp: 19";
+		rLen = 0;
+		rLoc = 278;
+		rType = 0;
+		vrLen = 772;
+		vrLoc = 21;
+	};
+	5928F97E10F3D2F2004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
+		name = "isightviewer.cpp: 16";
+		rLen = 0;
+		rLoc = 279;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 80;
+	};
+	5928F98610F3D3F0004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F90910F3C5B5004C76C6 /* isightviewer.cpp */;
+		name = "isightviewer.cpp: 16";
+		rLen = 0;
+		rLoc = 279;
+		rType = 0;
+		vrLen = 744;
+		vrLoc = 80;
+	};
+	5928F98710F3D3F0004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F97310F3D101004C76C6 /* vect.h */;
+		name = "vect.h: 40";
+		rLen = 0;
+		rLoc = 2416;
+		rType = 0;
+		vrLen = 1438;
+		vrLoc = 0;
+	};
+	5928F98810F3D3F0004C76C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5928F97310F3D101004C76C6 /* vect.h */;
+		name = "vect.h: 30";
+		rLen = 0;
+		rLoc = 937;
+		rType = 0;
+		vrLen = 1875;
+		vrLoc = 353;
 	};
 	8DD76FA90486AB0100D96B5E /* isightviewer */ = {
 		activeExec = 0;
