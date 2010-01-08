@@ -1,0 +1,98 @@
+=================
+Yahoo! OS PHP SDK
+=================
+
+After downloading and unpackaging the release, copy the contents of yosdk/lib
+to a directory that is accessible via the PHP require/require_once methods. In
+your PHP scripts, require the Yahoo.inc file:
+
+    require("Yahoo.inc");
+
+or
+
+    require_once("Yahoo.inc");
+
+Now you should be ready to instantiate your YahooSession object and get
+started.
+
+===================
+Sample Applications
+===================
+
+In the yosdk/sample directory you'll find sampleapp.php, a sample application
+that will get you started. Put the file in your hosting directory and fill
+in the consumer key, consumer key secret and application ID. When you're done,
+point your browser at the URL. You will be directed to verify access to the
+application and then you will be redirected back to your application.
+
+In the yosdk/sample directory you'll find delicious.php, a sample yahoo open
+application that shows how to use YQL to make web service request.
+
+==========================
+Debugging with the YOS SDK
+==========================
+
+The YOS SDK provides some methods that make debugging easier. Also, since the YOS
+SDK was designed for the greatest compatibility across PHP version, it is advised
+to suppress notices if using PHP 5.x:
+
+// debug settings
+error_reporting(E_ALL | E_NOTICE); # do not show notices as library is php4 compatable
+ini_set('display_errors', true);
+
+YahooLogger::setDebug(true);
+YahooLogger::setDebugDestination('LOG');
+
+
+==========================================================
+Storing OAuth credentials on filesystem, memcache, cookies
+==========================================================
+
+By default, OAuth credentials (request + access tokens) are stored in PHP sessions.
+PHP sessions can easily be configured to work from a local filesystem, a database, or
+a memcache instance. The sample apps provide working examples of filesystem storage
+and memcache storage.
+
+====================================
+Filesystem Session Storage (default)
+====================================
+
+// Include the YOS library.
+require dirname(__FILE__).'/../lib/Yahoo.inc';
+
+// use local filesystem to store oauth credentials via php native sessions
+ini_set('session.save_handler', 'files');
+session_save_path('/tmp/');
+session_start();
+
+========================
+Memcache Session Storage
+========================
+
+// Include the YOS library.
+require dirname(__FILE__).'/../lib/Yahoo.inc';
+
+// use memcache to store oauth credentials via php native sessions
+ini_set('session.save_handler', 'memcache');
+session_save_path('tcp://localhost:11211?persistent=1&weight=1&timeout=1&retry_interval=15');
+session_start();
+
+
+=======================================
+Cookie Based Session Storage (original)
+=======================================
+
+The original default storage backend was based on storing access tokens in a plain text cookie. This is bad for security, and the default has since been changed (breaks backwards compatibility). In order to use the original
+session store, you must instantiate 'CookieSessionStore' and pass into all methods of YahooSession:
+
+$sessionStore = new CookieSessionStore();
+
+YahooSession::hasSession($consumerKey, $consumerSecret, $applicationId, $sessionStore, $verifier)
+YahooSession::requireSession($consumerKey, $consumerSecret, $applicationId, $callback, $sessionStore, $verifier)
+YahooSession::initSession($consumerKey, $consumerSecret, $applicationId, $redirect, $callback, $sessionStore, $verifier)
+
+YahooSession::createAuthorizationUrl($consumerKey, $consumerSecret, $callback, $sessionStore)
+YahooSession::redirectForAuthorization($consumerKey, $consumerSecret, $callback, $sessionStore)
+YahooSession::clearSession($sessionStore)
+YahooSession::checkSession($sessionType, $sessionStore)
+
