@@ -13,6 +13,7 @@
 		5928F91610F3C614004C76C6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91510F3C614004C76C6 /* OpenGL.framework */; };
 		5928F91A10F3C62A004C76C6 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91910F3C62A004C76C6 /* QuickTime.framework */; };
 		5928F91E10F3C632004C76C6 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928F91D10F3C632004C76C6 /* ApplicationServices.framework */; };
+		5928F9FE10F3FC88004C76C6 /* opticalflow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928F9FD10F3FC88004C76C6 /* opticalflow.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,9 @@
 		5928F97310F3D101004C76C6 /* vect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vect.h; sourceTree = "<group>"; };
 		5928F98A10F3D57B004C76C6 /* bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
 		5928F98B10F3D9E1004C76C6 /* peteutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = peteutil.h; sourceTree = "<group>"; };
+		5928F9FC10F3FC75004C76C6 /* opticalflow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opticalflow.h; sourceTree = "<group>"; };
+		5928F9FD10F3FC88004C76C6 /* opticalflow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = opticalflow.cpp; sourceTree = "<group>"; };
+		5928FABE10F7C7C1004C76C6 /* bitmapops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmapops.h; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* isightviewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = isightviewer; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,12 +76,15 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5928F98A10F3D57B004C76C6 /* bitmap.h */,
+				5928FABE10F7C7C1004C76C6 /* bitmapops.h */,
 				5928F90910F3C5B5004C76C6 /* isightviewer.cpp */,
 				5928F90A10F3C5B5004C76C6 /* livefeed_osx.cpp */,
 				5928F90B10F3C5B5004C76C6 /* livefeed.h */,
-				5928F97310F3D101004C76C6 /* vect.h */,
-				5928F98A10F3D57B004C76C6 /* bitmap.h */,
+				5928F9FD10F3FC88004C76C6 /* opticalflow.cpp */,
+				5928F9FC10F3FC75004C76C6 /* opticalflow.h */,
 				5928F98B10F3D9E1004C76C6 /* peteutil.h */,
+				5928F97310F3D101004C76C6 /* vect.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 			files = (
 				5928F90C10F3C5B5004C76C6 /* isightviewer.cpp in Sources */,
 				5928F90D10F3C5B5004C76C6 /* livefeed_osx.cpp in Sources */,
+				5928F9FE10F3FC88004C76C6 /* opticalflow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

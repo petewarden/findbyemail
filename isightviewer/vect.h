@@ -26,7 +26,21 @@ template <class T> struct Vect2
 	Vect2<T> operator+(const Vect2<T>& other) { return Vect2<T>(x+other.x, y+other.y); }
 	Vect2<T> operator-(const Vect2<T>& other) { return Vect2<T>(x-other.x, y-other.y); }
 	
-	Vect2<T> Cross(const Vect2<T>& other) { return Vect2<T>(-other.y, other.x); }
+	Vect2<T> cross() { return Vect2<T>(-this->y, this->x); }
+
+    T lengthSquared() { return ((x*x)+(y*y)); }
+
+	Vect2<T> normalized() 
+    {
+        const T lengthSquared = this->lengthSquared();
+        if (lengthSquared==0)
+            return *this;
+      
+        const T length = sqrt(lengthSquared);  
+        const T recipLength = (1/length);
+    
+        return (*this*recipLength);
+    }
 		
 	T dot(const Vect2<T>& other) { return (x*other.x)+(y*other.y); }
 };
@@ -52,7 +66,7 @@ template <class T> struct Vect3
 	Vect3<T> operator+(const Vect3<T>& other) { return Vect3<T>(x+other.x, y+other.y, z+other.z); }
 	Vect3<T> operator-(const Vect3<T>& other) { return Vect3<T>(x-other.x, y-other.y, z-other.z); }
 	
-	Vect3<T> Cross(const Vect3<T>& other) { return Vect3<T>((y*other.z)-(z*other.y), 
+	Vect3<T> cross(const Vect3<T>& other) { return Vect3<T>((y*other.z)-(z*other.y), 
 		(z*other.x)-(x*other.z), (x*other.y)-(y*other.x)); }
 		
 	T dot(const Vect3<T>& other) { return (x*other.x)+(y*other.y)+(z*other.z); }
@@ -87,14 +101,17 @@ template <class T> inline Vect4<T> operator*(T factor, const Vect4<T>& other) {
 	return Vect4<T>(factor*other.x, factor*other.y, factor*other.z, factor*other.w); }
 
 typedef struct Vect2<unsigned char> Vect2b;
+typedef struct Vect2<int> Vect2i;
 typedef struct Vect2<float> Vect2f;
 typedef struct Vect2<double> Vect2d;
 
 typedef struct Vect3<unsigned char> Vect3b;
+typedef struct Vect3<int> Vect3i;
 typedef struct Vect3<float> Vect3f;
 typedef struct Vect3<double> Vect3d;
 
 typedef struct Vect4<unsigned char> Vect4b;
+typedef struct Vect4<int> Vect4i;
 typedef struct Vect4<float> Vect4f;
 typedef struct Vect4<double> Vect4d;
     

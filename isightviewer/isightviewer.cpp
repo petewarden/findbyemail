@@ -15,9 +15,13 @@
 
 #include "livefeed.h"
 #include "bitmap.h"
+#include "bitmapops.h"
+#include "opticalflow.h"
 
 #define WINDOW_WIDTH (1024)
 #define WINDOW_HEIGHT (768)
+
+OpticalFlow g_opticalFlow;
 
 double getSeconds()
 {
@@ -106,7 +110,7 @@ void BasicTexQuad::DrawSelf ()
   glBindTexture(GL_TEXTURE_RECTANGLE_EXT, texID);
   glEnable(GL_TEXTURE_RECTANGLE_EXT);
 
-  Vect3d up = over.Cross (norm);
+  Vect3d up = over.cross (norm);
   Vect3d north = height * up;
   Vect3d east = width * over;
   Vect3d v = pos - 0.5 * (east + north);
@@ -147,12 +151,77 @@ reshape(int w, int h)
 }
 
 void
+drawFlowVectors(Bitmap2f& flow, Vect3d pos, Vect3d size)
+{
+    const float pointSpacing = 32.0f;
+    const float lineScale = 256.0f;
+    const float arrowWidth = 1.0f;
+    const float arrowLength = 4.0f;
+    const float minimumForDisplay = 0.0001f;
+    
+    const int flowWidth = flow._width;
+    const int flowHeight = flow._height;
+
+    glDisable(GL_TEXTURE_RECTANGLE_EXT);
+    glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    for (float y=0.0f; y<size.y; y+= pointSpacing)
+    {
+        const int flowSampleY = (int)((y/size.y)*flowHeight);
+        
+        for (float x=0.0f; x<size.x; x+= pointSpacing)
+        {
+            const int flowSampleX = (int)((x/size.x)*flowWidth);
+            
+            Vect2f flowValues = *(Vect2f*)(flow.pixelAt(flowSampleX, flowSampleY));
+        
+            if (flowValues.lengthSquared()<minimumForDisplay)
+                continue;
+        
+            Vect2f lineOrigin(pos.x+x, pos.y+y);
+            Vect2f lineDirection = (flowValues*lineScale);
+            Vect2f lineTip = (lineOrigin+lineDirection);
+        
+            Vect2f arrowBase = (lineTip-(flowValues.normalized()*arrowLength));
+            Vect2f arrowOffset = (flowValues.cross().normalized()*arrowWidth);
+            Vect2f arrowLeft = (arrowBase-arrowOffset);
+            Vect2f arrowRight = (arrowBase+arrowOffset);
+
+            glBegin(GL_LINE_STRIP);
+            
+            glVertex2f(lineOrigin.x, lineOrigin.y);
+            glVertex2f(lineTip.x, lineTip.y);
+            glVertex2f(arrowLeft.x, arrowLeft.y);
+            glVertex2f(arrowRight.x, arrowRight.y);
+            glVertex2f(lineTip.x, lineTip.y);
+            
+            glEnd();
+        }
+    }
+}
+
+void
 display(void)
 {
     // Pete - We need to call this periodically to give Quicktime a chance to grab the video data
     SGIdle(g_mungData->seqGrab);
 
-    g_texQuad.SetTexture(g_feedImage);
+    Bitmap2f& flow = g_opticalFlow.getFlowForFrame(g_feedImage);
+
+    const bool showFlowTexture = false;
+    if (showFlowTexture)
+    {
+        Bitmap4b flowTexture;
+        convertToARGB8(flow, &flowTexture);
+
+        g_texQuad.SetTexture(flowTexture);
+    }
+    else
+    {
+        g_texQuad.SetTexture(g_feedImage);    
+    }
   
 	glClear(GL_COLOR_BUFFER_BIT);
   
@@ -160,6 +229,12 @@ display(void)
 	g_texQuad.over = Vect3d(cos(angle), sin(angle), 0);
 
 	g_texQuad.DrawSelf();
+    
+    Vect3d quadSize(g_texQuad.width, g_texQuad.height, 0);
+    Vect3d halfQuadSize = (quadSize*0.5);
+    Vect3d quadTopLeft = (g_texQuad.pos-halfQuadSize);
+    
+    drawFlowVectors(flow, quadTopLeft, quadSize);
   
 	glutSwapBuffers();
 
