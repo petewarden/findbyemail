@@ -79,6 +79,7 @@ function find_by_email($email) {
 		'amazon_find_by_email',
 		'brightkite_find_by_email',
 		'aim_find_by_email',
+        'intensedebate_find_by_email',
 //		'skype_find_by_email',
 		'friendfeed_find_by_email',
 		'google_find_by_email',
@@ -893,6 +894,53 @@ function skype_find_by_email($email) {
 	);
 	
 	return $result;	
+}
+
+/**
+ * Calls the IntenseDebate API to get information about the user associated with this
+ * email address. Based on email conversations with Jon Fox, jon@intensedebate.com
+ *
+ * @since Unknown
+ *
+ * @param string $email The email address of the user
+ */
+function intensedebate_find_by_email($email) {
+
+	$user_info_url = 'http://intensedebate.com/services/v1/users';
+    $user_info_url .= '?appKey='.INTENSEDEBATE_API_KEY;
+	$user_info_url .= '&email='.urlencode($email);
+
+	$user_info_result = http_request($user_info_url);
+	if ( !did_http_succeed($user_info_result) ) {
+		return null;
+	}
+	
+	$user_info_json_string = $user_info_result['body'];
+	$user_info_object = json_decode($user_info_json_string, true);
+	
+	if (!isset($user_info_object['data'][0]['username'])) {
+		return null;
+	}
+	
+	$user_data = $user_info_object['data'][0];
+	
+	$user_name = $user_data['username'];
+	$user_id = $user_data['id'];
+	$display_name = $user_data['name'];
+	$portrait_url = '';
+	$location = '';
+
+	$result = array(
+		'intensedebate' => array(
+			'user_id' => $user_id,
+			'user_name' => $user_name,
+			'display_name' => $display_name,
+			'portrait_url' => $portrait_url,
+			'location' => $location,
+		),
+	);
+	
+	return $result;
 }
 
 /**
