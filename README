@@ -17,6 +17,7 @@ Friendfeed
 Google Social Graph
 Rapleaf
 DandyID
+IntenseDebate
  
 The main entry point is the find_by_email() function. This calls the various services
 that offer a mapping between an email address and user information, and returns an
