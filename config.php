@@ -45,6 +45,9 @@ define ('AIM_API_KEY', '');
 // Email jon at intensedebate.com to request an API key for their API
 define ('INTENSEDEBATE_API_KEY', '');
 
+// Register at http://developer.jigsaw.com/member/register for the keys
+define ('JIGSAW_API_KEY', '');
+
 if (FLICKR_API_KEY_PUBLIC==='')
     die('You need to edit config.php to add your own API keys before you can use this module');
 

@@ -85,6 +85,7 @@ function find_by_email($email) {
 		'google_find_by_email',
 		'rapleaf_find_by_email',
 		'dandyid_find_by_email',
+        'jigsaw_find_by_email',
 	);
 	
 	$result = array();
@@ -1196,6 +1197,78 @@ function get_profile_for_service($service_name, $user_name, $user_id, $profile_u
 	}
 	
 	return $result;
+}
+
+/**
+ * Calls the Jigsaw API to get information about the user associated with this
+ * email address. For more details on the call, see
+ * http://developer.jigsaw.com/search_and_get_api_guide/2_Search_API_Resources
+ *
+ * @since Unknown
+ *
+ * @param string $email The email address of the user
+ */
+function jigsaw_find_by_email($email) {
+
+	$user_info_url = 'https://www.jigsaw.com/rest/searchContact.json';
+	$user_info_url .= '?token='.JIGSAW_API_KEY;
+	$user_info_url .= '&email='.urlencode($email);
+	
+	$user_info_result = http_request($user_info_url);
+	if ( !did_http_succeed($user_info_result) ) {
+		return null;
+	}
+
+	// Take the JSON string containing all the user's information and pull it into a PHP array as the final result
+	$user_info_json_string = $user_info_result['body'];
+
+	$user_info_object = json_decode($user_info_json_string, true);
+	
+	if (!isset($user_info_object['contacts'][0])) {
+		return null;
+	}
+	
+	$user_data = $user_info_object['contacts'][0];
+
+    $location_parts = array();
+
+    if (isset($user_data['address']))
+        $location_parts[] = $user_data['address'];
+
+    if (isset($user_data['city']))
+        $location_parts[] = $user_data['city'];
+
+    if (isset($user_data['state']))
+        $location_parts[] = $user_data['state'];
+
+    if (isset($user_data['country']))
+        $location_parts[] = $user_data['country'];
+    
+    $name_parts = array();
+    
+    if (isset($user_data['firstname']))
+        $name_parts[] = $user_data['firstname'];
+
+    if (isset($user_data['lastname']))
+        $name_parts[] = $user_data['lastname'];
+    
+	$user_id = $user_date['contactId'];
+	$user_name = '';
+	$display_name = implode(' ', $name_parts);
+	$portrait_url = '';
+    $location = implode(', ', $location_parts);
+
+	$result = array(
+		'jigsaw' => array(
+			'user_id' => $user_id,
+			'user_name' => $user_name,
+			'display_name' => $display_name,
+			'portrait_url' => $portrait_url,
+			'location' => $location,
+		),
+	);
+	
+	return $result;	
 }
 
 /**
