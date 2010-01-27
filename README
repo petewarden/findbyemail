@@ -3,6 +3,8 @@ FindByEmail.php
 
 *Before using this module, you must add your own keys to config.php!*
 
+You can give this a try for yourself at http://web.mailana.com/labs/findbyemail/
+
 This module looks up user information from various public sources based on the 
 supplied email address. It queries the following services:
 
