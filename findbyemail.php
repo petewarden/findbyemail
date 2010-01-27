@@ -80,6 +80,7 @@ function find_by_email($email) {
 		'brightkite_find_by_email',
 		'aim_find_by_email',
         'intensedebate_find_by_email',
+        'myspace_find_by_email',
 //		'skype_find_by_email',
 		'friendfeed_find_by_email',
 		'google_find_by_email',
@@ -1252,7 +1253,7 @@ function jigsaw_find_by_email($email) {
     if (isset($user_data['lastname']))
         $name_parts[] = $user_data['lastname'];
     
-	$user_id = $user_date['contactId'];
+	$user_id = $user_data['contactId'];
 	$user_name = '';
 	$display_name = implode(' ', $name_parts);
 	$portrait_url = '';
@@ -1260,6 +1261,59 @@ function jigsaw_find_by_email($email) {
 
 	$result = array(
 		'jigsaw' => array(
+			'user_id' => $user_id,
+			'user_name' => $user_name,
+			'display_name' => $display_name,
+			'portrait_url' => $portrait_url,
+			'location' => $location,
+		),
+	);
+	
+	return $result;	
+}
+
+/**
+ * Calls the MySpace API to get information about the user associated with this
+ * email address. For more details on the call, see
+ * http://wiki.developer.myspace.com/index.php?title=Open_Search
+ *
+ * @since Unknown
+ *
+ * @param string $email The email address of the user
+ */
+function myspace_find_by_email($email) {
+
+	$user_info_url = 'http://api.myspace.com/opensearch/people';
+	$user_info_url .= '?searchBy=email';
+	$user_info_url .= '&searchTerms='.urlencode($email);
+	
+	$user_info_result = http_request($user_info_url);
+	if ( !did_http_succeed($user_info_result) ) {
+		return null;
+	}
+
+	// Take the JSON string containing all the user's information and pull it into a PHP array as the final result
+	$user_info_json_string = $user_info_result['body'];
+
+	$user_info_object = json_decode($user_info_json_string, true);
+	
+	if (!isset($user_info_object['entry'][0])) {
+		return null;
+	}
+	
+	$user_data = $user_info_object['entry'][0];
+    
+	$user_id = str_replace('myspace.com.person.', '', $user_data['id']);
+	$user_name = '';
+	$display_name = $user_data['displayName'];
+    if (strrpos($user_data['thumbnailUrl'], 'no_pic.gif'))
+        $portrait_url = '';
+    else
+        $portrait_url = $user_data['thumbnailUrl'];
+    $location = $user_data['location'];
+
+	$result = array(
+		'myspace' => array(
 			'user_id' => $user_id,
 			'user_name' => $user_name,
 			'display_name' => $display_name,
