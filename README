@@ -42,6 +42,11 @@ Some services like Rapleaf, Friendfeed and DandyID return information on multipl
 other services for a user. These appear in the results, but are overwritten if the
 services themselves return information first.
 
+I've also included an example of a simple API provider, with a version hosted at
+http://web.mailana.com/labs/findbyemail/api.php
+To use it, just pass in the email address as a parameter, and you'll get JSON back:
+http://web.mailana.com/labs/findbyemail/api.php?email=pete%40petewarden.com
+
 Licensed under the 2-clause (eg no advertising requirement) BSD license,
 making it easy to reuse for commercial or GPL projects:
  
