@@ -774,7 +774,7 @@ function rapleaf_find_by_email($email) {
 
 	$all_services = $user_info_object['person']['memberships']['primary']['membership'];
 	foreach ($all_services as $service) {
-		
+        
 		$service_url = $service['@attributes']['site'];
 		if (preg_match('/(.*)\.com/', $service_url, $matches)) {
 			$service_name = $matches[1];
@@ -800,7 +800,7 @@ function rapleaf_find_by_email($email) {
 			}
 		
 			$result[$service_name] = $service_result;
-		}	
+		}
 	}
 	
 	return $result;	
@@ -836,10 +836,14 @@ function aim_find_by_email($email) {
 	}
 	
 	$user_data = $user_info_object['response']['data']['users'][0];
-	if (!isset($user_data['buddyIcon'])) {
+	if (!isset($user_data['aimId'])) {
 		return null;
 	}
-	$portrait_url = $user_data['buddyIcon'];
+    if (isset($user_data['presenceIcon']))
+        $portrait_url = $user_data['presenceIcon'];
+    else
+        $portrait_url = '';
+        
 	$user_name = $user_data['aimId'];
 	$user_id = '';
 	$location = '';
@@ -1032,6 +1036,12 @@ function get_profile_for_service($service_name, $user_name, $user_id, $profile_u
 	switch ($service_name) {
 	
 		case 'twitter': {
+			if ($user_name=='') {
+				if (preg_match('/twitter.com\/([^\/]+)/', $profile_url, $matches)) {
+                    $user_name = $matches[1];
+                }
+			}
+
 			if ($user_name!='') {
 			
 				$portrait_url = 'http://overtar.appspot.com/';
@@ -1052,6 +1062,9 @@ function get_profile_for_service($service_name, $user_name, $user_id, $profile_u
 				if (preg_match('/id=([0-9]+)/', $profile_url, $matches)) {
 					$user_id = $matches[1];
 				}
+				else if (preg_match('/facebook.com\/([^\/]+)/', $profile_url, $matches)) {
+                    $user_name = $matches[1];
+                }
 			}
 
 			if (($user_name!='') || ($user_id!='')) {
@@ -1182,6 +1195,9 @@ function get_profile_for_service($service_name, $user_name, $user_id, $profile_u
 				if (preg_match('/friendid=([0-9]+)/', $profile_url, $matches)) {
 					$user_id = $matches[1];
 				}
+				else if (preg_match('/myspace.com\/([^\/]+)/', $profile_url, $matches)) {
+                    $user_name = $matches[1];
+                }
 			}
 
 			if (($user_name!='') || ($user_id!='')) {
