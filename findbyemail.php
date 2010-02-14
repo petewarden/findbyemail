@@ -836,10 +836,11 @@ function aim_find_by_email($email) {
 	}
 	
 	$user_data = $user_info_object['response']['data']['users'][0];
-	if (!isset($user_data['aimId'])) {
+	if ($user_data['state']=='notFound') {
 		return null;
 	}
-    if (isset($user_data['presenceIcon']))
+    if (isset($user_data['presenceIcon']) &&
+        ($user_data['presenceIcon']!=='http://o.aolcdn.com/aim/img/offline.gif'))
         $portrait_url = $user_data['presenceIcon'];
     else
         $portrait_url = '';
