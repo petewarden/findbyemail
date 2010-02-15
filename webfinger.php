@@ -228,7 +228,7 @@ function webfinger_query_url_for_email($email) {
     }
     
     // Finally substitute the actual email address into the generic template
-    $result = str_replace('{uri}', urlencode($email), $template);
+    $result = str_replace('{uri}', urlencode('acct://'.$email), $template);
     
     return $result;
 }
