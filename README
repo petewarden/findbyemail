@@ -8,6 +8,7 @@ You can give this a try for yourself at http://web.mailana.com/labs/findbyemail/
 This module looks up user information from various public sources based on the 
 supplied email address. It queries the following services:
 
+WebFinger
 Gravatar
 Yahoo
 43things
@@ -47,8 +48,13 @@ http://web.mailana.com/labs/findbyemail/api.php
 To use it, just pass in the email address as a parameter, and you'll get JSON back:
 http://web.mailana.com/labs/findbyemail/api.php?email=pete%40petewarden.com
 
-Licensed under the 2-clause (eg no advertising requirement) BSD license,
-making it easy to reuse for commercial or GPL projects:
+To parse hCard pages for WebFinger, it uses the hKit project:
+http://code.google.com/p/hkit/
+That is licensed under the LGPL. You may also need the DOM/XML module for PHP:
+http://www.php.net/manual/en/dom.setup.php
+
+Otherwise the code is icensed under the 2-clause (eg no advertising requirement) BSD
+license, making it easy to reuse for commercial or GPL projects:
  
  (c) Pete Warden <pete@petewarden.com> http://petewarden.typepad.com/ Jan 8th 2010
  
